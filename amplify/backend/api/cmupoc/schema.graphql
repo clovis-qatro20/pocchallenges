@@ -1,0 +1,16 @@
+type Challenge @model {
+  id: ID!
+  owner: User!
+  description: String!
+  expires: String!
+  price: String!
+  challenger: User
+  code: Int!
+  accomplish: Int!
+  notAccomplished: Int!
+}
+
+type User {
+  email: String!
+  name: String!
+}

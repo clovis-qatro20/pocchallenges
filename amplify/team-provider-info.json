@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cmupoc-dev-181938-authRole",
+      "UnauthRoleArn": "arn:aws:iam::036917629170:role/amplify-cmupoc-dev-181938-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::036917629170:role/amplify-cmupoc-dev-181938-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cmupoc-dev-181938-deployment",
+      "UnauthRoleName": "amplify-cmupoc-dev-181938-unauthRole",
+      "StackName": "amplify-cmupoc-dev-181938",
+      "StackId": "arn:aws:cloudformation:us-east-1:036917629170:stack/amplify-cmupoc-dev-181938/8c50b460-a553-11eb-b169-0ab6bdebb579",
+      "AmplifyAppId": "d2diwhduhl1m2p"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "cmupoc",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}
