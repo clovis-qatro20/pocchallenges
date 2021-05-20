@@ -10,6 +10,22 @@
       "StackName": "amplify-cmupoc-dev-181938",
       "StackId": "arn:aws:cloudformation:us-east-1:036917629170:stack/amplify-cmupoc-dev-181938/8c50b460-a553-11eb-b169-0ab6bdebb579",
       "AmplifyAppId": "d2diwhduhl1m2p"
+    },
+    "categories": {
+      "video": {
+        "cmuvod": {
+          "s3UUID": "m1m9gw90"
+        }
+      },
+      "auth": {
+        "cmupoc19342039": {}
+      },
+      "storage": {
+        "cmupoc678f731c": {
+          "bucketName": "cmuvod-dev-input-m1m9gw90",
+          "region": "us-east-1"
+        }
+      }
     }
   }
 }

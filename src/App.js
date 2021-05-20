@@ -11,6 +11,8 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import CreateChallenge from "./pages/CreateChallenge";
 import CreateChallengeConfirmation from "./pages/CreateChalllengeConfirmation";
+import SubmitChallenge from "./pages/SubmitChallenge";
+import SubmitChallengeForm from "./pages/SubmitChallengeForm";
 import store from "./store";
 
 Amplify.configure(awsconfig);
@@ -21,6 +23,8 @@ const App = () => {
       <Router>
         <Layout>
           <Switch>
+            <Route path="/challenge" exact component={SubmitChallenge} />
+            <Route path="/challenge/submit" exact component={SubmitChallengeForm} />
             <Route path="/create_challenge/confirmation" exact component={CreateChallengeConfirmation} />
             <Route path="/create_challenge" exact component={CreateChallenge} />
             <Route path="/" component={Home} />

@@ -14,3 +14,17 @@ type User {
   email: String!
   name: String!
 }
+
+type vodAsset @model(subscriptions: { level: public }) {
+  id: ID!
+  title: String!
+  description: String!
+
+  #DO NOT EDIT
+  video: videoObject @connection
+}
+
+#DO NOT EDIT
+type videoObject @model {
+  id: ID!
+}

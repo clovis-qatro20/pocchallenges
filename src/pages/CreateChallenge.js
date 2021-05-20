@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import StyledButton from "../components/StyleButton";
 import { createChallenge } from "../store/challenge/actions";
 import moment from "moment";
+import { Redirect } from "react-router";
 
 const challenges = [
   "Reto de tragos 🥃.Mira parece fácil pero la idea🤔 es que por cada trago🍻 que tu amig@ tome debe acompañarlo de dos flexiones de pecho🏋️🏋️. Ponle un número de rondas realizable durante 30 segundos ⌛ para que parezca un reto y menciona la recompensa que juegas a cambio.🎁 (Sube vídeo⬆️📽️). ",
@@ -13,7 +14,7 @@ const challenges = [
   "Pose de Yoga 🧘‍♀️en el puesto de oficina o de estudio 🖥️. El reto es que tu amig@ se tome una foto  📷en el puesto de trabajo o de estudio  🖥️ haciendo una pose de yoga 🧘‍♀️, si quieres elige tu cuál, no se vale trabajo en casa.😒. No se te olvide mencionar la recompensa 🎁 que juegas a cambio. ( Sube foto ⬆️📷).",
 ];
 
-const CreateChallenge = ({ history, createChallenge }) => {
+const CreateChallenge = ({ createChallenge, challenge }) => {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [code, setCode] = useState(0);
@@ -49,6 +50,7 @@ const CreateChallenge = ({ history, createChallenge }) => {
 
   return (
     <>
+      {challenge.data && <Redirect to="/create_challenge/confirmation" />}
       <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
       <div className="formContainer">
         <div className="inputRow">
@@ -109,4 +111,8 @@ const CreateChallenge = ({ history, createChallenge }) => {
   );
 };
 
-export default connect(() => ({}), { createChallenge })(CreateChallenge);
+const mapStateToProps = ({ Challenge }) => ({
+  challenge: Challenge,
+});
+
+export default connect(mapStateToProps, { createChallenge })(CreateChallenge);

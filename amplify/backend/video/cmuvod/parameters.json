@@ -1,0 +1,17 @@
+{
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "GraphQLAPIId": {
+        "Fn::GetAtt": [
+            "apicmupoc",
+            "Outputs.GraphQLAPIIdOutput"
+        ]
+    },
+    "GraphQLEndpoint": {
+        "Fn::GetAtt": [
+            "apicmupoc",
+            "Outputs.GraphQLAPIEndpointOutput"
+        ]
+    }
+}

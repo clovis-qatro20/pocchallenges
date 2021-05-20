@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 
 const Layout = ({ children, loading, challenge }) => {
@@ -11,9 +10,6 @@ const Layout = ({ children, loading, challenge }) => {
 
   return (
     <div className="layout">
-      {challenge.data && (
-        <Redirect to="/create_challenge/confirmation" />
-      )}
       {loading && (
         <div className="loader">
           <Loader type="Puff" color="#00BFFF" height={150} width={150} />

@@ -16,5 +16,28 @@
         }
       }
     }
+  },
+  "video": {
+    "cmuvod": {
+      "service": "video",
+      "serviceType": "video-on-demand",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "auth": {
+    "cmupoc19342039": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "cmupoc678f731c": {
+      "service": "S3",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }
