@@ -19,7 +19,7 @@ import Auth from "@aws-amplify/auth";
 import { LayoutContext } from "../components/Layout";
 import { Redirect } from "react-router";
 
-const DEFAULT_RECORD_TIME = 5;
+const DEFAULT_RECORD_TIME = 10;
 
 const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   const webcamRef = useRef(null);
