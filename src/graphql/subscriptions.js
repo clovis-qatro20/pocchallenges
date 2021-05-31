@@ -1,6 +1,43 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onUpdateChallengeSubscription = /* GraphQL */ `
+  subscription OnUpdateChallengeSubscription($id: ID!) {
+    onUpdateChallengeSubscription(id: $id) {
+      id
+      owner {
+        email
+        name
+      }
+      description
+      expires
+      price
+      challenger {
+        email
+        name
+      }
+      code
+      accomplish
+      notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateChallenge = /* GraphQL */ `
   subscription OnCreateChallenge {
     onCreateChallenge {
@@ -19,6 +56,20 @@ export const onCreateChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -42,6 +93,20 @@ export const onUpdateChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -65,6 +130,20 @@ export const onDeleteChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -76,6 +155,7 @@ export const onCreateVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt
@@ -92,6 +172,7 @@ export const onUpdateVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt
@@ -108,6 +189,7 @@ export const onDeleteVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt

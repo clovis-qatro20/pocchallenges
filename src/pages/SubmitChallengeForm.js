@@ -1,8 +1,13 @@
-import React, { useCallback, useState, useRef } from "react";
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  useEffect,
+  useContext,
+} from "react";
 import { connect } from "react-redux";
 import { submitChallenge } from "../store/challenge/actions";
 import Webcam from "react-webcam";
-import StyledButton from "../components/StyleButton";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,15 +15,30 @@ import {
   faPlay,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import Auth from "@aws-amplify/auth";
+import { LayoutContext } from "../components/Layout";
+import { Redirect } from "react-router";
 
 const DEFAULT_RECORD_TIME = 5;
 
-const SubmitChallengeForm = ({ submitChallenge }) => {
+const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [blobURL, setBlobURL] = useState("");
+  const { setStyle } = useContext(LayoutContext);
+
+  useEffect(() => {
+    setStyle({ padding: 0, background_color: "#ffffff" });
+    (async () => {
+      await Auth.signIn("masteruser", "ShibaInuCoin");
+    })();
+
+    return () => {
+      setStyle({});
+    };
+  }, []);
 
   const videoConstraints = {
     width: screen.width,
@@ -44,7 +64,12 @@ const SubmitChallengeForm = ({ submitChallenge }) => {
   const handleDataAvailable = useCallback(
     ({ data }) => {
       if (data.size > 0) {
-        setRecordedChunks((prev) => prev.concat(data));
+        setRecordedChunks(
+          (prev) =>
+            new Blob(prev.concat(data), {
+              type: "video/mp4",
+            })
+        );
         const blob = new Blob([].concat(data), {
           type: "video/webm",
         });
@@ -60,31 +85,19 @@ const SubmitChallengeForm = ({ submitChallenge }) => {
     setRecordedChunks([]);
   };
 
-  const handleSendMedia = () => {
-    submitChallenge(recordedChunks);
-  };
+  const handleSendMedia = useCallback(() => {
+    const params = new URLSearchParams(window.location.search);
+    const challenger = {
+      name: params.get("name"),
+      email: params.get("email"),
+    };
+    submitChallenge({ recordedChunks, challenger });
+  }, [recordedChunks]);
 
   const handleStopCaptureClick = useCallback(() => {
     mediaRecorderRef.current.stop();
     setCapturing(false);
   }, [mediaRecorderRef, webcamRef, setCapturing]);
-
-  const handleDownload = useCallback(() => {
-    if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      document.body.appendChild(a);
-      a.style = "display: none";
-      a.href = url;
-      a.download = "react-webcam-stream-capture.webm";
-      a.click();
-      window.URL.revokeObjectURL(url);
-      setRecordedChunks([]);
-    }
-  }, [recordedChunks]);
 
   const renderCaputre = () => (
     <>
@@ -132,6 +145,7 @@ const SubmitChallengeForm = ({ submitChallenge }) => {
 
   return (
     <div className="videoRecorder">
+      {redirect && <Redirect to='/challenge/confirmation' />}
       {blobURL ? renderReplay() : renderCaputre()}
     </div>
   );
@@ -139,6 +153,7 @@ const SubmitChallengeForm = ({ submitChallenge }) => {
 
 const mapStateToProps = ({ Challenge }) => ({
   challenge: Challenge.data,
+  redirect: Challenge.submitted || false,
 });
 
 export default connect(mapStateToProps, { submitChallenge })(

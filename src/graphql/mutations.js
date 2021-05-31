@@ -22,6 +22,20 @@ export const createChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -48,6 +62,20 @@ export const updateChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -74,6 +102,20 @@ export const deleteChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -88,6 +130,7 @@ export const createVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt
@@ -107,6 +150,7 @@ export const updateVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt
@@ -126,6 +170,7 @@ export const deleteVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt

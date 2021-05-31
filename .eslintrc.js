@@ -20,6 +20,8 @@ module.exports = {
     "rules": {
         "react/prop-types": "off",
         "no-unused-vars": "off",
+        "no-undef": "off",
+        "react/display-name": "off",
         "no-restricted-globals": ["error", "event", "fdescribe"]
     }
 };

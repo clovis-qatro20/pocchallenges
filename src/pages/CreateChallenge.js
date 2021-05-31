@@ -50,7 +50,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
 
   return (
     <>
-      {challenge.data && <Redirect to="/create_challenge/confirmation" />}
+      {challenge.data && <Redirect to="/challenge/confirmation" />}
       <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
       <div className="formContainer">
         <div className="inputRow">

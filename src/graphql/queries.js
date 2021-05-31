@@ -19,6 +19,20 @@ export const getChallenge = /* GraphQL */ `
       code
       accomplish
       notAccomplished
+      vodID
+      vodAsset {
+        id
+        title
+        description
+        videoID
+        video {
+          id
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -47,6 +61,15 @@ export const listChallenges = /* GraphQL */ `
         code
         accomplish
         notAccomplished
+        vodID
+        vodAsset {
+          id
+          title
+          description
+          videoID
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -60,6 +83,7 @@ export const getVodAsset = /* GraphQL */ `
       id
       title
       description
+      videoID
       video {
         id
         createdAt
@@ -81,6 +105,7 @@ export const listVodAssets = /* GraphQL */ `
         id
         title
         description
+        videoID
         video {
           id
           createdAt
