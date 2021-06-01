@@ -11,7 +11,12 @@ const persistedState = localStorage.getItem("state")
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
-const devTools = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : null
+// eslint-disable-next-line no-underscore-dangle
+let devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && 
+window.__REDUX_DEVTOOLS_EXTENSION__();
+if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production') {
+    devTools = a => a;
+}
 
 // Mount it on the Store
 const store = createStore(
