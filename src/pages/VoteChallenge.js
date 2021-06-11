@@ -48,10 +48,15 @@ class VideoPlayer extends React.Component {
 
 const VotingCounter = ({ accomplish, notAccomplished }) => {
   const total = accomplish + notAccomplished;
-  const accomplishPercentage =
-    ((accomplish / total) * 100).toFixed(1).toString() + "%";
-  const notAccomplishedPercentage =
-    ((notAccomplished / total) * 100).toFixed(1).toString() + "%";
+  let accomplishPercentage = "50%";
+  let notAccomplishedPercentage = "50%";
+
+  if (accomplish)
+    accomplishPercentage =
+      ((accomplish / total) * 100).toFixed(1).toString() + "%";
+  if (notAccomplished)
+    notAccomplishedPercentage =
+      ((notAccomplished / total) * 100).toFixed(1).toString() + "%";
   return (
     <div>
       <h3 className="votingTitle">Total de votos: {total}</h3>

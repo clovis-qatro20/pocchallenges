@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
   faPlay,
+  faRedo,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Auth from "@aws-amplify/auth";
@@ -24,6 +25,7 @@ const DEFAULT_RECORD_TIME = 10;
 const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
+  const videoRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [blobURL, setBlobURL] = useState("");
@@ -41,9 +43,17 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   }, []);
 
   const videoConstraints = {
-    width: screen.width,
-    height: screen.height,
     facingMode: "user",
+    video: {
+      height: {
+          min: 640,
+          max: 1920
+      },
+      width: {
+          min: 480,
+          max: 1024
+      }
+  }
   };
 
   const handleStartCaptureClick = useCallback(() => {
@@ -83,6 +93,10 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   const handleDiscardMedia = () => {
     setBlobURL("");
     setRecordedChunks([]);
+  };
+
+  const handleReplay = () => {
+    videoRef.current.play()
   };
 
   const handleSendMedia = useCallback(() => {
@@ -133,13 +147,16 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
 
   const renderReplay = () => (
     <>
-      <video src={blobURL} autoPlay className="replay" />{" "}
+      <video src={blobURL} autoPlay className="replay" ref={videoRef} />{" "}
       <div className="videoController">
-        <button onClick={handleDiscardMedia} className="playerButton">
+        <button onClick={handleDiscardMedia} className="playerButton playerButtonsm">
           <FontAwesomeIcon icon={faTimes} />
         </button>
         <button onClick={handleSendMedia} className="playerButton">
           <FontAwesomeIcon icon={faPaperPlane} />
+        </button>
+        <button onClick={handleReplay } className="playerButton playerButtonsm">
+          <FontAwesomeIcon icon={faRedo} />
         </button>
       </div>
     </>

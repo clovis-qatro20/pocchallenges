@@ -31,22 +31,22 @@ const uploadVideoAPI = async ({ recordedChunks, challenge, challenger }) => {
   );
   const vodAsset = await API.graphql(
     graphqlOperation(mutations.createVodAsset, {
-      title: `${challenge.id}-video-proof`,
-      description: challenge.description,
-      videoID: uuid,
+      input: {
+        title: `${challenge.id}-video-proof`,
+        description: challenge.description,
+        videoID: uuid,
+      },
     })
   );
   const {
-    data: { updateChallenge },
+    data: { updateChallenge: res },
   } = await updateChallenge({
-    input: {
       id: challenge.id,
       vodID: vodAsset.data.createVodAsset.id,
       challenger,
-    },
   });
 
-  return updateChallenge;
+  return res;
 };
 
 function* createChallengeSaga({ payload }) {

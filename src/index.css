@@ -146,6 +146,15 @@ code {
   font-size: 1.5em;
 }
 
+.playerButtonsm {
+  padding: 0em;
+  font-size: 1.3em;
+  width: 2.7em;
+  height: 2.7em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .videoRecorder {
   background-color: rgb(49, 49, 49);
   height: 100vh;
@@ -153,7 +162,8 @@ code {
 }
 
 .videoRecorder .replay {
-  height: 100%;
+  width: 100%;
+  margin-top: 30vh;
 }
 
 .descriptionModal {
