@@ -104,6 +104,8 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
       <Webcam
         audio={true}
         ref={webcamRef}
+        width={screen.width}
+        height={screen.height}
         videoConstraints={videoConstraints}
       />
       <div className="videoController">
@@ -131,7 +133,7 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
 
   const renderReplay = () => (
     <>
-      <video src={blobURL} autoPlay />{" "}
+      <video src={blobURL} autoPlay className="replay" />{" "}
       <div className="videoController">
         <button onClick={handleDiscardMedia} className="playerButton">
           <FontAwesomeIcon icon={faTimes} />
