@@ -51,10 +51,10 @@ const VotingCounter = ({ accomplish, notAccomplished }) => {
   let accomplishPercentage = "50%";
   let notAccomplishedPercentage = "50%";
 
-  if (accomplish)
+  if (total)
     accomplishPercentage =
       ((accomplish / total) * 100).toFixed(1).toString() + "%";
-  if (notAccomplished)
+  if (total)
     notAccomplishedPercentage =
       ((notAccomplished / total) * 100).toFixed(1).toString() + "%";
   return (
