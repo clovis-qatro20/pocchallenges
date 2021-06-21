@@ -62,12 +62,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
-        <button
-          style={{ marginTop: "10px" }}
-          onClick={() => generateRandomChallenge()}
-        >
-          Generar Reto
-        </button>
+        <StyledButton title="Generar Reto" action={generateRandomChallenge} customClass="generateChallenge" />
         <div className="inputRow">
           <label>Nombre</label>
           <input
