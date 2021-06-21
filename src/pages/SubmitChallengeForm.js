@@ -57,11 +57,8 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   }, [recordedChunks]);
 
   const onFinishUploadVideo = (video) => {
-    console.log(video);
     setRecordedChunks(video);
-    // const blob = new Blob(video);
     const url = URL.createObjectURL(video);
-    console.log(url);
     setBlobURL(url);
   };
 
