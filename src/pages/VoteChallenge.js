@@ -124,18 +124,19 @@ const VoteChallenge = ({
 
   useEffect(() => {
     setPickWinner(
-      moment(challenge.expires).isBefore(moment().format("YYYY-MM-DD"))
+      moment(challenge?.expires).isBefore(moment().format("YYYY-MM-DD"))
     );
     setVideoOnDemandJsOptions({
       autoplay: false,
       controls: true,
+      aspectRatio: "4:5",
       sources: [
         {
-          src: `https://cmuvod-dev-output-m1m9gw90.s3.amazonaws.com/public/${challenge.vodAsset?.videoID}/${challenge.vodAsset.videoID}.m3u8`,
+          src: `https://cmuvod-dev-output-m1m9gw90.s3.amazonaws.com/public/${challenge?.vodAsset?.videoID}/${challenge?.vodAsset.videoID}.m3u8`,
         },
       ],
     });
-    if (id === challenge.id) setRenderVideo(true);
+    if (id === challenge?.id) setRenderVideo(true);
   }, [challenge]);
 
   const closeModal = () => {
@@ -170,13 +171,13 @@ const VoteChallenge = ({
   );
 
   const renderWinnerInterface = () => {
-    const challengerWin = challenge.accomplish > challenge.notAccomplished;
+    const challengerWin = challenge?.accomplish > challenge?.notAccomplished;
     return (
       <div className="bottomControlers">
         <h4>
           {challengerWin
-            ? `${challenge.challenger?.name} gano!! 🦄🔥🔥🔥`
-            : `${challenge.challenger?.name} perdio!! 😩😩😭`}
+            ? `${challenge?.challenger?.name} gano!! 🦄🔥🔥🔥`
+            : `${challenge?.challenger?.name} perdio!! 😩😩😭`}
         </h4>
       </div>
     );
@@ -188,9 +189,9 @@ const VoteChallenge = ({
         <div className="descriptionModal">
           <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
           <h4>El reto Cash Me Up</h4>
-          <p>{`${challenge.owner.name} reto a ${challenge.challenger?.name}`}</p>
+          <p>{`${challenge?.owner?.name} reto a ${challenge?.challenger?.name}`}</p>
           <p>a</p>
-          <p>{challenge.description}</p>
+          <p>{challenge?.description}</p>
           {pickWinner ? (
             <>
               <p>mira quien gano</p>
@@ -201,7 +202,7 @@ const VoteChallenge = ({
           ) : (
             <>
               <p>la votacion termina a las</p>
-              <p>{moment(challenge.expires).format("LL")}</p>
+              <p>{moment(challenge?.expires).format("LL")}</p>
               <p>¿CUMPLIÓ? O NO CUMPLIÓ</p>
               <button className="secondary" onClick={() => closeModal()}>
                 votar
@@ -214,8 +215,8 @@ const VoteChallenge = ({
       {renderVideo && <VideoPlayer {...videoOnDemandJsOptions} />}
       <VotingCounter
         {...{
-          accomplish: challenge.accomplish,
-          notAccomplished: challenge.notAccomplished,
+          accomplish: challenge?.accomplish,
+          notAccomplished: challenge?.notAccomplished,
         }}
       />
       {pickWinner ? renderWinnerInterface() : renderVotingInterface()}

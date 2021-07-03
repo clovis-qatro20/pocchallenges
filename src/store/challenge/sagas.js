@@ -55,6 +55,12 @@ function* createChallengeSaga({ payload }) {
     const {
       data: { createChallenge },
     } = yield call(createChallengeAPI, payload);
+    localStorage.setItem(
+      "state",
+      JSON.stringify({
+        Challenge: { data: createChallenge, err: {}, submitted: false },
+      })
+    );
     yield put(actions.createChallengeSuccess(createChallenge));
   } catch (err) {
     yield put(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { toast } from "react-toastify";
@@ -7,15 +7,23 @@ import StyledButton from "../components/StyleButton";
 const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
   const challengerURL = `${process.env.REACT_APP_BASE_URL}/challenge?id=${data?.id}`;
   const votingURL = `${process.env.REACT_APP_BASE_URL}/challenge/vote?id=${data?.id}`;
+  const urlWithCode = `${challengerURL}&code=${data?.code}`;
+  const inputRefChallengeURL = useRef(null);
+  const inputRefVotingURL = useRef(null);
 
   const copyURL = () => {
-    navigator.clipboard.writeText(votingURL);
+    inputRefVotingURL.current.select();
+    inputRefVotingURL.current.setSelectionRange(0, 9999);
+    document.execCommand("copy");
+
     toast.success("Tu enlace fue para publico fue copiado con exito!🔥🔥");
   };
 
   const copyURLwitCode = () => {
-    const url = `${challengerURL}&code=${data?.code}`;
-    navigator.clipboard.writeText(url);
+    inputRefChallengeURL.current.select();
+    inputRefChallengeURL.current.setSelectionRange(0, 9999);
+    document.execCommand("copy");
+
     toast.success("Tu enlace para el retador fue copiado con exito!🔥🔥");
   };
 
@@ -30,9 +38,19 @@ const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
         ahora`}
       </p>
       {!submitted && (
-        <StyledButton action={copyURLwitCode} title="enlace para el retado" />
+        <>
+          <h4>Link para el retado</h4>
+          <div className="votingLingContainer">
+            <input value={urlWithCode} type="text" ref={inputRefChallengeURL} />
+            <StyledButton action={copyURLwitCode} title="Copiar" />
+          </div>
+        </>
       )}
-      <StyledButton action={copyURL} title="enlace para el publico" />
+      <h4>Link para votar</h4>
+      <div className="votingLingContainer">
+        <input value={votingURL} type="text" ref={inputRefVotingURL} />
+        <StyledButton action={copyURL} title="Copiar" />
+      </div>
     </>
   );
 };

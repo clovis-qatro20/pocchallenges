@@ -3,7 +3,11 @@ html,
   height: 100%;
 }
 
-p, input, li, button, label {
+p,
+input,
+li,
+button,
+label {
   text-align: center;
   font-size: 1.3em;
 }
@@ -25,7 +29,7 @@ h4,
 h5,
 label,
 h6 {
-  color: #3d3d3d;
+  color: #fff;
 }
 
 .loader {
@@ -48,6 +52,7 @@ h6 {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  background-color: rgb(36, 36, 36);
 }
 
 body {
@@ -67,9 +72,10 @@ body {
 
 input,
 textarea {
-  border: 1px solid rgb(112, 112, 112, 0.2);
-  color: #3d3d3d;
-  font-size:  1.3em;
+  background-color: hsl(0, 0%, 23%);
+  border: 1px solid rgba(83, 83, 83, 0.2);
+  color: #fff;
+  font-size: 1.3em;
   padding: 0.3em;
   border-radius: 1.3em;
 }
@@ -284,4 +290,12 @@ code {
 
 .votingTitle {
   text-align: center;
+}
+
+.votingLingContainer {
+  display: flex;
+}
+
+.votingLingContainer input {
+  margin-right: 10px;
 }

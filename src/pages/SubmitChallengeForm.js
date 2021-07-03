@@ -19,9 +19,9 @@ import { Redirect } from "react-router";
 import StyledButton from "../components/StyleButton";
 import { toast } from "react-toastify";
 
+const MAX_UPLOAD_TIME = 30;
+
 const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
-  const webcamRef = useRef(null);
-  const mediaRecorderRef = useRef(null);
   const videoRef = useRef(null);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [blobURL, setBlobURL] = useState("");
@@ -76,13 +76,16 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
         style={{ display: "none" }}
         onChange={(e) => onFinishUploadVideo(e.target.files[0])}
       ></input>
-      <p>al dar click, se abrira la camara de tu celular, el video puede durar un máximo de 30 segundos</p>
+      <p>
+        al dar click, se abrira la camara de tu celular, el video puede durar un
+        máximo de 30 segundos
+      </p>
       <StyledButton title="sube tu video" action={uploadVideo} />
     </>
   );
 
   const checkVideoValidate = (time) => {
-    if (time > 20) {
+    if (time >= MAX_UPLOAD_TIME) {
       handleDiscardMedia();
       toast.error("El limite de tiempo del video es de 30s");
     }
