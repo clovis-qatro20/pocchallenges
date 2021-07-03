@@ -77,7 +77,7 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
         onChange={(e) => onFinishUploadVideo(e.target.files[0])}
       ></input>
       <p>
-        al dar click, se abrira la camara de tu celular, el video puede durar un
+        Al dar click, se abrira la camara de tu celular, el video puede durar un
         máximo de 30 segundos
       </p>
       <StyledButton title="sube tu video" action={uploadVideo} />

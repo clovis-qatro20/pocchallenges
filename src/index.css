@@ -292,8 +292,12 @@ code {
   text-align: center;
 }
 
-.votingLingContainer {
+.votingLingContainer, .challengeDescriptionActions {
   display: flex;
+}
+.challengeDescriptionActions button {
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .votingLingContainer input {

@@ -17,11 +17,14 @@ const Home = ({ history, resetChallenge }) => {
         <p>Hola! Llego forma en que puedas Retar a tus amigos y ganarles:</p>
         <ul>
           <li>1. Crea el reto. 🤔</li>
-          <li>2. Indica el tiempo ⌛que le das para que lo cumpla.</li>
+          <li>
+            2. Indica la fecha⌛ que le das para que lo cumpla el reto, puedes
+            usar uno de nuestros retos generados, o crear el tuyo.
+          </li>
           <li>3. Señala el premio 🍲 🍸🛹que vas a jugar.</li>
           <li>
-            4. El retado 😈 sube foto🖼️ del reto. No olvides compartirle el
-            código del reto
+            4. El retado 😈 sube video del reto, el limite de tiempo de cada video es de 30s. No olvides compartirle el link
+            del reto
           </li>
           <li>
             5. Comparte el enlace para que otras personas voten 🗳️ y decidan si
