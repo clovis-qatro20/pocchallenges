@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getChallenge } from "../store/challenge/actions";
+import { useParams } from "react-router-dom";
 import StyledButton from "../components/StyleButton";
 
 const SubmitChallenge = ({ getChallenge, challenge, history }) => {
-  const params = new URLSearchParams(window.location.search);
+  const { id, code = null } = useParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const id = params.get("id");
-  const code = params.get("code") || null;
   const { owner, code: challengeCode, description, price } = challenge || {};
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
   }, []);
 
   const onEnterChallenge = () => {
-    history.push(`/challenge/submit?name=${name}&email=${email}`);
+    history.push(`/challenge/submit/${name}/${email}`);
   };
 
   const renderPulicMessage = () => (
@@ -58,7 +57,7 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
         <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
         <div>
           <div className="descriptionContainer">
-            <p>{owner.name} te reto a:</p>
+            <p>{owner?.name} te reto a:</p>
             <p>{description}</p>
           </div>
           <div className="priceContainer">

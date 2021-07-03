@@ -24,19 +24,9 @@ const App = () => {
         <Layout>
           <Switch>
             <Route
-              path="/challenge"
+              path="/create_challenge"
               exact
-              component={withTracker(SubmitChallenge)}
-            />
-            <Route
-              path="/challenge/submit"
-              exact
-              component={withTracker(SubmitChallengeForm)}
-            />
-            <Route
-              path="/challenge/vote"
-              exact
-              component={withTracker(VoteChallenge)}
+              component={withTracker(CreateChallenge)}
             />
             <Route
               path="/challenge/confirmation"
@@ -44,9 +34,16 @@ const App = () => {
               component={withTracker(ChallengeConfirmation)}
             />
             <Route
-              path="/create_challenge"
-              exact
-              component={withTracker(CreateChallenge)}
+              path="/challenge/submit/:name/:email"
+              component={withTracker(SubmitChallengeForm)}
+            />
+            <Route
+              path="/challenge/vote/:id"
+              component={withTracker(VoteChallenge)}
+            />
+            <Route
+              path="/challenge/:id/:code"
+              component={withTracker(SubmitChallenge)}
             />
             <Route path="/" component={Home} />
           </Switch>

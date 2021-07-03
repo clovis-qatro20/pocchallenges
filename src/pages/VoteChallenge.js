@@ -18,6 +18,7 @@ import moment from "moment";
 import API from "@aws-amplify/api";
 import { onUpdateChallengeSubscription } from "../graphql/subscriptions";
 import "moment/locale/es";
+import { useParams } from "react-router";
 
 class VideoPlayer extends React.Component {
   componentDidMount() {
@@ -81,9 +82,8 @@ const VoteChallenge = ({
   voteChallenge,
   updateVoting,
 }) => {
-  const params = new URLSearchParams(window.location.search);
+  const { id } = useParams();
   const { setStyle } = useContext(LayoutContext);
-  const id = params.get("id");
   const [showModal, setShowModal] = useState(true);
   const [videoOnDemandJsOptions, setVideoOnDemandJsOptions] = useState({});
   const [renderVideo, setRenderVideo] = useState(false);

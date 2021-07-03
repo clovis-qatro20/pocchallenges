@@ -15,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Auth from "@aws-amplify/auth";
 import { LayoutContext } from "../components/Layout";
-import { Redirect } from "react-router";
+import { Redirect, useParams } from "react-router";
 import StyledButton from "../components/StyleButton";
 import { toast } from "react-toastify";
 
@@ -26,6 +26,7 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [blobURL, setBlobURL] = useState("");
   const { setStyle } = useContext(LayoutContext);
+  const { name, email } = useParams();
 
   useEffect(() => {
     setStyle({ padding: 0, background_color: "#ffffff" });
@@ -48,10 +49,9 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   };
 
   const handleSendMedia = useCallback(() => {
-    const params = new URLSearchParams(window.location.search);
     const challenger = {
-      name: params.get("name"),
-      email: params.get("email"),
+      name,
+      email,
     };
     submitChallenge({ recordedChunks, challenger });
   }, [recordedChunks]);

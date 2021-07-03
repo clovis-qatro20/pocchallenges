@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 import StyledButton from "../components/StyleButton";
 
 const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
-  const challengerURL = `${process.env.REACT_APP_BASE_URL}/challenge?id=${data?.id}`;
-  const votingURL = `${process.env.REACT_APP_BASE_URL}/challenge/vote?id=${data?.id}`;
-  const urlWithCode = `${challengerURL}&code=${data?.code}`;
+  const challengerURL = `${process.env.REACT_APP_BASE_URL}/challenge/${data?.id}`;
+  const votingURL = `${process.env.REACT_APP_BASE_URL}/challenge/vote/${data?.id}`;
+  const urlWithCode = `${challengerURL}/${data?.code}`;
   const inputRefChallengeURL = useRef(null);
   const inputRefVotingURL = useRef(null);
 
