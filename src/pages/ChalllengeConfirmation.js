@@ -19,7 +19,7 @@ const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
     toast.success("Tu enlace fue para publico fue copiado con exito!🔥🔥");
   };
 
-  const copyURLwitCode = () => {
+  const copyURLwithCode = () => {
     inputRefChallengeURL.current.select();
     inputRefChallengeURL.current.setSelectionRange(0, 9999);
     document.execCommand("copy");
@@ -29,7 +29,6 @@ const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
 
   return (
     <>
-      {/* {!data && <Redirect to="/" />} */}
       <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
       <p>
         {submitted
@@ -41,14 +40,22 @@ const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
         <>
           <h4>Link para el retado</h4>
           <div className="votingLingContainer">
-            <input value={urlWithCode} type="text" ref={inputRefChallengeURL} />
-            <StyledButton action={copyURLwitCode} title="Copiar" />
+            <textarea
+              value={`${data.owner?.name} te ha retado, atrévete 😉💪 gana esa premio  🎁, sigue el link: ${urlWithCode}`}
+              type="text"
+              ref={inputRefChallengeURL}
+            />
+            <StyledButton action={copyURLwithCode} title="Copiar" />
           </div>
         </>
       )}
       <h4>Link para votar</h4>
       <div className="votingLingContainer">
-        <input value={votingURL} type="text" ref={inputRefVotingURL} />
+        <textarea
+          value={`Te han seleccionado🧐cómo jurado. Decide 🤔 y vota 🗳️si tu amigo cumplió o no el reto: ${votingURL}`}
+          type="text"
+          ref={inputRefVotingURL}
+        />
         <StyledButton action={copyURL} title="Copiar" />
       </div>
     </>

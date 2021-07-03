@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useRef,
-  useEffect,
-  useContext,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import {
   getChallenge,
@@ -132,7 +126,7 @@ const VoteChallenge = ({
       aspectRatio: "4:5",
       sources: [
         {
-          src: `https://cmuvod-dev-output-m1m9gw90.s3.amazonaws.com/public/${challenge?.vodAsset?.videoID}/${challenge?.vodAsset.videoID}.m3u8`,
+          src: `https://cmuvod-dev-output-m1m9gw90.s3.amazonaws.com/public/${challenge?.vodAsset?.videoID}/${challenge?.vodAsset?.videoID}.m3u8`,
         },
       ],
     });
@@ -153,7 +147,13 @@ const VoteChallenge = ({
   const renderVotingInterface = () => (
     <div className="bottomControlers">
       {voted ? (
-        <h5>Gracias por Vortar!!</h5>
+        <>
+          <h5>Gracias por Vortar!!</h5>
+          <p>
+            Recuerda volver a este mismo link el{" "}
+            {moment(challenge?.expires).format("LL")}, para descubir al ganador
+          </p>
+        </>
       ) : (
         <>
           <h5>¿Se cumplió el reto?</h5>

@@ -294,12 +294,20 @@ code {
 
 .votingLingContainer, .challengeDescriptionActions {
   display: flex;
+  align-items: center;
 }
 .challengeDescriptionActions button {
   margin-left: 3px;
   margin-right: 3px;
 }
 
-.votingLingContainer input {
+.votingLingContainer textarea {
+  width: 100%;
+  height: 100px;
   margin-right: 10px;
+}
+
+.votingLingContainer button {
+  width: 6em;
+  height: 3em;
 }
