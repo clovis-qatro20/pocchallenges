@@ -15,7 +15,7 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
   }, []);
 
   const onEnterChallenge = () => {
-    history.push(`/challenge/submit/${name}/${email}`);
+    history.push(`/challenge/submit/${id}/${name}/${email}`);
   };
 
   const renderPulicMessage = () => (
