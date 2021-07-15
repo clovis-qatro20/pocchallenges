@@ -1,15 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router";
+import { Redirect, useParams } from "react-router";
 import { toast } from "react-toastify";
 import StyledButton from "../components/StyleButton";
+import { getChallenge } from "../store/challenge/actions";
 
-const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
+const ChallengeConfirmation = ({
+  challenge: { data, submitted },
+  getChallenge,
+}) => {
   const challengerURL = `${process.env.REACT_APP_BASE_URL}/challenge/${data?.id}`;
   const votingURL = `${process.env.REACT_APP_BASE_URL}/challenge/vote/${data?.id}`;
   const urlWithCode = `${challengerURL}/${data?.code}`;
   const inputRefChallengeURL = useRef(null);
   const inputRefVotingURL = useRef(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    !data  && getChallenge(id);
+  }, []);
 
   const copyURL = () => {
     inputRefVotingURL.current.select();
@@ -41,7 +50,7 @@ const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
           <h4>Link para el retado</h4>
           <div className="votingLingContainer">
             <textarea
-              value={`${data.owner?.name} te ha retado, atrévete 😉💪 gana esa premio  🎁, sigue el link: ${urlWithCode}`}
+              value={`${data?.owner?.name} te ha retado, atrévete 😉💪 gana esa premio  🎁, sigue el link: ${urlWithCode}`}
               type="text"
               ref={inputRefChallengeURL}
             />
@@ -64,4 +73,6 @@ const ChallengeConfirmation = ({ challenge: { data, submitted } }) => {
 
 const mapStateToProps = ({ Challenge }) => ({ challenge: Challenge });
 
-export default connect(mapStateToProps, {})(ChallengeConfirmation);
+export default connect(mapStateToProps, { getChallenge })(
+  ChallengeConfirmation
+);

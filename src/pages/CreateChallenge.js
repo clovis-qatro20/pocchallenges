@@ -4,6 +4,7 @@ import StyledButton from "../components/StyleButton";
 import { createChallenge } from "../store/challenge/actions";
 import moment from "moment";
 import { Redirect } from "react-router";
+import { toast } from "react-toastify";
 
 const challenges = [
   "Reto de tragos 🥃.Mira parece fácil pero la idea🤔 es que por cada trago🍻 que tu amig@ tome debe acompañarlo de dos flexiones de pecho🏋️🏋️. Ponle un número de rondas realizable durante 30 segundos ⌛ para que parezca un reto y menciona la recompensa que juegas a cambio.🎁 (Sube vídeo⬆️📽️). ",
@@ -33,24 +34,43 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
     generateRandomChallenge();
   }, []);
 
+  const validateInput = () => {
+    const emailRex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!emailRex.test(email.toLocaleLowerCase())) {
+      throw new Error("ingresa un correo valido");
+    }
+
+    if (!date || moment(date).isBefore(moment().format("YYYY-MM-DD")))
+      throw new Error("ingresa una fecha valida");
+  };
+
   const onSumitChallenge = () => {
-    createChallenge({
-      owner: {
-        name,
-        email,
-      },
-      expires: date,
-      description,
-      price,
-      code,
-      accomplish: 0,
-      notAccomplished: 0,
-    });
+    try {
+      validateInput();
+      // createChallenge({
+      //   owner: {
+      //     name,
+      //     email,
+      //   },
+      //   expires: date,
+      //   description,
+      //   price,
+      //   code,
+      //   accomplish: 0,
+      //   notAccomplished: 0,
+      // });
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
     <>
-      {challenge.data && <Redirect to="/challenge/confirmation" />}
+      {challenge.data && (
+        <Redirect to={`/challenge/confirmation/${challenge.data?.id}`} />
+      )}
       <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
       <div className="formContainer">
         <div className="inputRow">

@@ -189,9 +189,11 @@ const VoteChallenge = ({
         <div className="descriptionModal">
           <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
           <h4>El reto Cash Me Up</h4>
-          <p>{`${challenge?.owner?.name} reto a ${challenge?.challenger?.name}`}</p>
+          <p>{`${challenge?.owner?.name} reto a ${challenge?.challenger?.name || ''}`}</p>
           <p>a</p>
           <p>{challenge?.description}</p>
+          <p>antes del</p>
+          <p>{challenge?.expires}</p>
           {pickWinner ? (
             <>
               <p>mira quien gano</p>

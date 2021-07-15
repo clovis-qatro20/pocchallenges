@@ -29,12 +29,12 @@ const App = () => {
               component={withTracker(CreateChallenge)}
             />
             <Route
-              path="/challenge/confirmation"
+              path="/challenge/confirmation/:id"
               exact
               component={withTracker(ChallengeConfirmation)}
             />
             <Route
-              path="/challenge/submit/:name/:email"
+              path="/challenge/submit/:id/:name/:email"
               component={withTracker(SubmitChallengeForm)}
             />
             <Route

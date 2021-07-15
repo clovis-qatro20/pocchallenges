@@ -4,9 +4,11 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+        "airbnb",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -22,6 +24,7 @@ module.exports = {
         "no-unused-vars": "off",
         "no-undef": "off",
         "react/display-name": "off",
-        "no-restricted-globals": ["error", "event", "fdescribe"]
+        "no-restricted-globals": ["error", "event", "fdescribe"],
+        "no-throw-literal": "off"
     }
 };

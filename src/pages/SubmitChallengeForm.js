@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from "react";
 import { connect } from "react-redux";
-import { submitChallenge } from "../store/challenge/actions";
+import { submitChallenge, getChallenge } from "../store/challenge/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPaperPlane,
@@ -26,13 +26,16 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [blobURL, setBlobURL] = useState("");
   const { setStyle } = useContext(LayoutContext);
-  const { name, email } = useParams();
+  const { name, email, id } = useParams();
 
   useEffect(() => {
     setStyle({ padding: 0, background_color: "#ffffff" });
+    !data  && getChallenge(id);
     (async () => {
       await Auth.signIn("masteruser", "ShibaInuCoin");
     })();
+
+
 
     return () => {
       setStyle({});
@@ -130,6 +133,6 @@ const mapStateToProps = ({ Challenge }) => ({
   redirect: Challenge.submitted || false,
 });
 
-export default connect(mapStateToProps, { submitChallenge })(
+export default connect(mapStateToProps, { submitChallenge, getChallenge })(
   SubmitChallengeForm
 );

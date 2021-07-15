@@ -4,10 +4,6 @@ import createSagaMiddleware from "redux-saga";
 import reducer from "./rootReducer";
 import saga from "./rootSaga";
 
-const persistedState = localStorage.getItem("state")
-  ? JSON.parse(localStorage.getItem("state"))
-  : {};
-
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -21,7 +17,6 @@ if (process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production') {
 // Mount it on the Store
 const store = createStore(
   reducer,
-  persistedState,
   compose(
     applyMiddleware(sagaMiddleware),
     devTools

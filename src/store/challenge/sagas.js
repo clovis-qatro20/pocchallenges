@@ -41,9 +41,9 @@ const uploadVideoAPI = async ({ recordedChunks, challenge, challenger }) => {
   const {
     data: { updateChallenge: res },
   } = await updateChallenge({
-      id: challenge.id,
-      vodID: vodAsset.data.createVodAsset.id,
-      challenger,
+    id: challenge.id,
+    vodID: vodAsset.data.createVodAsset.id,
+    challenger,
   });
 
   return res;
@@ -55,12 +55,6 @@ function* createChallengeSaga({ payload }) {
     const {
       data: { createChallenge },
     } = yield call(createChallengeAPI, payload);
-    localStorage.setItem(
-      "state",
-      JSON.stringify({
-        Challenge: { data: createChallenge, err: {}, submitted: false },
-      })
-    );
     yield put(actions.createChallengeSuccess(createChallenge));
   } catch (err) {
     yield put(
@@ -80,10 +74,6 @@ function* getChallenge({ payload }) {
     const {
       data: { getChallenge },
     } = yield call(getChallengeAPI, payload);
-    localStorage.setItem(
-      "state",
-      JSON.stringify({ Challenge: { data: getChallenge, err: {} } })
-    );
     yield put(actions.getChallengeSuccess(getChallenge));
   } catch (err) {
     yield put(
@@ -135,12 +125,6 @@ function* submitChallenge({ payload }) {
       recordedChunks: payload.recordedChunks,
       challenge,
     });
-    localStorage.setItem(
-      "state",
-      JSON.stringify({
-        Challenge: { data: challengeObject, err: {}, submitted: true },
-      })
-    );
     yield put(actions.submitChallengeSuccess(challengeObject));
   } catch (err) {
     console.error(err);
