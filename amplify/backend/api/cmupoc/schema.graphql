@@ -2,6 +2,7 @@ type Challenge @model {
   id: ID!
   owner: User!
   description: String!
+  refused: Boolean
   expires: String!
   price: String!
   challenger: User

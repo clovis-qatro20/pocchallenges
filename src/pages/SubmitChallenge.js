@@ -1,10 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getChallenge } from "../store/challenge/actions";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import StyledButton from "../components/StyleButton";
+import moment from "moment";
+import { rejectChallenge } from "../store/challenge/actions";
 
-const SubmitChallenge = ({ getChallenge, challenge, history }) => {
+const SubmitChallenge = ({
+  getChallenge,
+  rejectChallenge,
+  challenge = {},
+  history,
+}) => {
   const { id, code = null } = useParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,8 +21,16 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
     getChallenge(id);
   }, []);
 
+  useEffect(() => {
+    challenge.challenger?.name;
+  }, [challenge]);
+
   const onEnterChallenge = () => {
     history.push(`/challenge/submit/${id}/${name}/${email}`);
+  };
+
+  const onRejectChallenge = () => {
+    rejectChallenge();
   };
 
   const renderPulicMessage = () => (
@@ -44,9 +59,14 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
         ></input>
       </div>
       <StyledButton
-        title="entrar al reto"
+        title="Aceptar"
         action={onEnterChallenge}
         customClass="submit-button"
+      />
+      <StyledButton
+        title="Rechazar"
+        action={onRejectChallenge}
+        customClass="submit-button danger"
       />
     </>
   );
@@ -54,6 +74,11 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
   if (challenge)
     return (
       <>
+        {challenge?.refused && (
+          <Redirect
+            to={`/challenge/vote/${id}`}
+          />
+        )}
         <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
         <div>
           <div className="descriptionContainer">
@@ -68,6 +93,8 @@ const SubmitChallenge = ({ getChallenge, challenge, history }) => {
             A continuación sube un video tuyo cumpliendo el reto. Dale! Echale
             ganas y gana el reto
           </p>
+          <p>Ingresa antes del</p>
+          <p>{moment(challenge?.expires).format("LL")}</p>
         </div>
         {challengeCode === Number(code)
           ? renderChallengerMessage()
@@ -82,4 +109,6 @@ const mapStateToProps = ({ Challenge }) => ({
   challenge: Challenge.data,
 });
 
-export default connect(mapStateToProps, { getChallenge })(SubmitChallenge);
+export default connect(mapStateToProps, { getChallenge, rejectChallenge })(
+  SubmitChallenge
+);

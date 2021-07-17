@@ -138,12 +138,25 @@ function* submitChallenge({ payload }) {
   } finally {
     yield put(finishLoading());
   }
-
-  // Storage
 }
+
+function* rejectChallenge({ payload }) {
+  const challenge = yield select(({ Challenge }) => Challenge.data);
+  yield put(startLoading());
+  const {
+    data: { updateChallenge: challengeObject },
+  } = yield call(updateChallenge, {
+    id: challenge.id,
+    refused: true,
+  });
+  yield put(finishLoading());
+  yield put(actions.rejectChallengeSuccess(challengeObject));
+}
+
 export function* challengeSaga() {
   yield takeLatest(actions.ACTIONS_TYPES.submitChallenge, submitChallenge);
   yield takeLatest(actions.ACTIONS_TYPES.createChallenge, createChallengeSaga);
   yield takeLatest(actions.ACTIONS_TYPES.getChallenge, getChallenge);
   yield takeLatest(actions.ACTIONS_TYPES.voteChallenge, voteChallenge);
+  yield takeLatest(actions.ACTIONS_TYPES.rejectChallenge, rejectChallenge);
 }

@@ -13,7 +13,18 @@ export const ACTIONS_TYPES = {
   voteChallengeSuccess: "@CHALLENGE/SUCCESS-CHALLENGE",
   voteChallengeFailed: "@CHALLENGE/SUCCESS-FAILED",
   updateVoting: "@CHALLENGE/UPDATE-VOTING",
+  rejectChallenge: "@CHALLENGE/REJECT-CHALLENGE",
+  rejectChallengeSuccess: "@CHALLENGE/REJECT-CHALLENGE-SUCCESS",
 };
+
+export const rejectChallenge = () => ({
+  type: ACTIONS_TYPES.rejectChallenge,
+});
+
+export const rejectChallengeSuccess = (payload) => ({
+  type: ACTIONS_TYPES.rejectChallengeSuccess,
+  payload,
+});
 
 export const createChallenge = (payload) => ({
   type: ACTIONS_TYPES.createChallenge,
@@ -70,15 +81,15 @@ export const resetChallenge = () => ({
 
 export const voteChallenge = (payload) => ({
   type: ACTIONS_TYPES.voteChallenge,
-  payload
-})
+  payload,
+});
 
 export const voteChallengeSuccess = (payload) => ({
   type: ACTIONS_TYPES.voteChallengeSuccess,
-  payload
-})
+  payload,
+});
 
 export const voteChallengeFailed = (payload) => ({
   type: ACTIONS_TYPES.voteChallengeFailed,
-  payload
-})
+  payload,
+});

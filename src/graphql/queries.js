@@ -10,6 +10,7 @@ export const getChallenge = /* GraphQL */ `
         name
       }
       description
+      refused
       expires
       price
       challenger {
@@ -52,6 +53,7 @@ export const listChallenges = /* GraphQL */ `
           name
         }
         description
+        refused
         expires
         price
         challenger {

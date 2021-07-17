@@ -3,6 +3,7 @@ import { ACTIONS_TYPES } from "./actions";
 export default function (state = {}, action) {
   switch (action.type) {
     case ACTIONS_TYPES.updateVoting:
+    case ACTIONS_TYPES.rejectChallengeSuccess:
     case ACTIONS_TYPES.voteChallengeSuccess: {
       return { data: action.payload, err: null, submitted: true };
     }

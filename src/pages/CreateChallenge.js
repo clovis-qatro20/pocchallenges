@@ -20,6 +20,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
   const [name, setName] = useState("");
   const [code, setCode] = useState(0);
   const [email, setEmail] = useState("");
+  const [challengerName, setChallengerName] = useState("");
   const [date, setDate] = useState("");
   const [price, setPrice] = useState("");
 
@@ -35,6 +36,17 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
   }, []);
 
   const validateInput = () => {
+    if (
+      !description ||
+      !name ||
+      !code ||
+      !email ||
+      !date ||
+      !price ||
+      !challengerName
+    )
+      throw new Error("No olvides llenar todos los campos");
+
     const emailRex =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -49,18 +61,22 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
   const onSumitChallenge = () => {
     try {
       validateInput();
-      // createChallenge({
-      //   owner: {
-      //     name,
-      //     email,
-      //   },
-      //   expires: date,
-      //   description,
-      //   price,
-      //   code,
-      //   accomplish: 0,
-      //   notAccomplished: 0,
-      // });
+      createChallenge({
+        owner: {
+          name,
+          email,
+        },
+        challenger: {
+          name: challengerName,
+          email: "",
+        },
+        expires: date,
+        description,
+        price,
+        code,
+        accomplish: 0,
+        notAccomplished: 0,
+      });
     } catch (err) {
       toast.error(err.message);
     }
@@ -108,6 +124,14 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          ></input>
+        </div>
+        <div className="inputRow">
+          <label>Nombre de quién retas</label>
+          <input
+            type="email"
+            value={challengerName}
+            onChange={(e) => setChallengerName(e.target.value)}
           ></input>
         </div>
         <div className="inputRow">

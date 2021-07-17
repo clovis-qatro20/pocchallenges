@@ -10,6 +10,7 @@ export const onUpdateChallengeSubscription = /* GraphQL */ `
         name
       }
       description
+      refused
       expires
       price
       challenger {
@@ -47,6 +48,7 @@ export const onCreateChallenge = /* GraphQL */ `
         name
       }
       description
+      refused
       expires
       price
       challenger {
@@ -84,6 +86,7 @@ export const onUpdateChallenge = /* GraphQL */ `
         name
       }
       description
+      refused
       expires
       price
       challenger {
@@ -121,6 +124,7 @@ export const onDeleteChallenge = /* GraphQL */ `
         name
       }
       description
+      refused
       expires
       price
       challenger {

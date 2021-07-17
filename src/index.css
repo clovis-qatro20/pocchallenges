@@ -33,7 +33,7 @@ h6 {
 }
 
 .loader {
-  background-color: #fff;
+  background-color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,7 @@ h6 {
   position: fixed;
   z-index: 10;
   top: 0;
-  opacity: 0.8;
+  opacity: 0.4;
 }
 
 .layout {
@@ -310,4 +310,8 @@ code {
 .votingLingContainer button {
   width: 6em;
   height: 3em;
+}
+
+.danger {
+  background-color: #b12f2f;
 }
