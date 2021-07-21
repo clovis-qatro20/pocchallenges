@@ -156,6 +156,11 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
           ></textarea>
         </div>
       </div>
+      <p>
+        Nos encantaría ☺️☺️ que nos pases tu correo ✉️ para tenerte como parte
+        de nuestra base de datos 🗃️ y así mismo tenerte en cuenta para futuras
+        activaciones 🎉🎉 descuentos y promociones 🆓🆓😘😘
+      </p>
       <StyledButton title="iniciar el reto" action={onSumitChallenge} />
     </>
   );

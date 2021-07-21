@@ -8,6 +8,7 @@ export const LayoutContext = React.createContext({ padding: "1em" });
 
 const Layout = ({ children, loading, challenge }) => {
   const [style, setStyle] = useState({});
+  const [showFeedBack, setShowFeedBack] = useState(true);
 
   useEffect(() => {
     toast.error(challenge.err);
@@ -33,6 +34,19 @@ const Layout = ({ children, loading, challenge }) => {
             pauseOnHover
           />
           {children}
+          {showFeedBack && (
+            <div className="feedback">
+              {/* <h3>X</h3> */}
+              Ayudanos a mejorar! nos gustaria escuchar tu opinion, haz click en{" "}
+              <a
+                rel="noreferrer"
+                target="_blank"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeIR2t6qv5fBe5tpRi0-cx6KQdax4_Po7BuGusl7SWeOGG34g/viewform?usp=sf_link"
+              >
+                Feedback form
+              </a>
+            </div>
+          )}
         </div>
       </LayoutContext.Provider>
     </ErrorBoundary>

@@ -281,6 +281,7 @@ code {
 
 .votingBarLeft {
   flex-grow: 1;
+  background-color: #5a5a5a;
 }
 
 .votingBarRight {
@@ -292,7 +293,8 @@ code {
   text-align: center;
 }
 
-.votingLingContainer, .challengeDescriptionActions {
+.votingLingContainer,
+.challengeDescriptionActions {
   display: flex;
   align-items: center;
 }
@@ -314,4 +316,16 @@ code {
 
 .danger {
   background-color: #b12f2f;
+}
+
+.votingBarTextCounter {
+  display: flex;
+  justify-content: space-around;
+}
+
+.feedback {
+  background-color: #ec7a7a;
+  padding: 0.5em;
+  text-align: center;
+  margin-top: 2em;
 }

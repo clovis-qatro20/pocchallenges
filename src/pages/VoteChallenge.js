@@ -59,12 +59,12 @@ const VotingCounter = ({ accomplish, notAccomplished }) => {
         <div
           className="votingBar votingBarRight"
           style={{ width: accomplishPercentage }}
-        >
-          <p>SI: {accomplishPercentage}</p>
-        </div>
-        <div className="votingBar votingBarLeft">
-          <p>NO: {notAccomplishedPercentage}</p>
-        </div>
+        ></div>
+        <div className="votingBar votingBarLeft"></div>
+      </div>
+      <div className="votingBarTextCounter">
+        <p>SI: {accomplishPercentage}</p>
+        <p>NO: {notAccomplishedPercentage}</p>
       </div>
     </div>
   );
@@ -95,6 +95,17 @@ const VoteChallenge = ({
     getChallenge(id);
     document.body.style.position = "fixed";
     document.body.style.top = `-${window.scrollY}px`;
+
+    const challengeHasBeenVoted = () => {
+      const isVoted = document.cookie
+        .split(";")
+        .filter((cookie) => cookie.includes("cmu_id"))
+        .some((cookieId) => cookieId.replace("cmu_id=", " ").trim() === id);
+
+      setVoted(isVoted);
+    };
+
+    challengeHasBeenVoted();
 
     challengeSubscription = API.graphql({
       query: onUpdateChallengeSubscription,
@@ -141,6 +152,7 @@ const VoteChallenge = ({
 
   const onClickVote = (value) => {
     setVoted(true);
+    document.cookie = `cmu_id=${id};path=/`;
     voteChallenge(value);
   };
 
@@ -184,7 +196,7 @@ const VoteChallenge = ({
   };
 
   const renderVotingSection = () => {
-    if (challenge.refused) {
+    if (challenge?.refused) {
       return <p>{challenge?.challenger.name} rechazo el reto</p>;
     }
 

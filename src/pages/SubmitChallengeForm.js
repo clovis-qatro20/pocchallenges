@@ -21,7 +21,12 @@ import { toast } from "react-toastify";
 
 const MAX_UPLOAD_TIME = 30;
 
-const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
+const SubmitChallengeForm = ({
+  submitChallenge,
+  redirect,
+  challenge,
+  getChallenge,
+}) => {
   const videoRef = useRef(null);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [blobURL, setBlobURL] = useState("");
@@ -30,12 +35,11 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
 
   useEffect(() => {
     setStyle({ padding: 0, background_color: "#ffffff" });
-    !data  && getChallenge(id);
     (async () => {
       await Auth.signIn("masteruser", "ShibaInuCoin");
     })();
 
-
+    getChallenge(id);
 
     return () => {
       setStyle({});
@@ -122,7 +126,8 @@ const SubmitChallengeForm = ({ submitChallenge, redirect }) => {
 
   return (
     <div className="videoRecorder">
-      {redirect && <Redirect to="/challenge/confirmation" />}
+      {challenge.vodID && <Redirect to={`/challenge/confirmation/${challenge.id}`}  />}
+      {redirect && <Redirect to={`/challenge/confirmation/${challenge.id}`}  />}
       {blobURL ? renderReplay() : renderCaputre()}
     </div>
   );

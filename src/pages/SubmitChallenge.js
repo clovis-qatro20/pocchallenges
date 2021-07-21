@@ -5,6 +5,7 @@ import { Redirect, useParams } from "react-router-dom";
 import StyledButton from "../components/StyleButton";
 import moment from "moment";
 import { rejectChallenge } from "../store/challenge/actions";
+import { toast } from "react-toastify";
 
 const SubmitChallenge = ({
   getChallenge,
@@ -25,8 +26,24 @@ const SubmitChallenge = ({
     challenge.challenger?.name;
   }, [challenge]);
 
+  const validateInput = () => {
+    if (!name || !email) throw new Error("No olvides llenar todos los campos");
+
+    const emailRex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!emailRex.test(email.toLocaleLowerCase())) {
+      throw new Error("ingresa un correo valido");
+    }
+  };
+
   const onEnterChallenge = () => {
-    history.push(`/challenge/submit/${id}/${name}/${email}`);
+    try {
+      validateInput();
+      history.push(`/challenge/submit/${id}/${name}/${email}`);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   const onRejectChallenge = () => {
@@ -58,6 +75,11 @@ const SubmitChallenge = ({
           onChange={(e) => setEmail(e.target.value)}
         ></input>
       </div>
+      <p>
+        Nos encantaría ☺️☺️ que nos pases tu correo ✉️ para tenerte como parte
+        de nuestra base de datos 🗃️ y así mismo tenerte en cuenta para futuras
+        activaciones 🎉🎉 descuentos y promociones 🆓🆓😘😘
+      </p>
       <StyledButton
         title="Aceptar"
         action={onEnterChallenge}
@@ -74,11 +96,7 @@ const SubmitChallenge = ({
   if (challenge)
     return (
       <>
-        {challenge?.refused && (
-          <Redirect
-            to={`/challenge/vote/${id}`}
-          />
-        )}
+        {challenge?.refused && <Redirect to={`/challenge/vote/${id}`} />}
         <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
         <div>
           <div className="descriptionContainer">
