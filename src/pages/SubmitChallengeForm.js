@@ -100,6 +100,7 @@ const SubmitChallengeForm = ({
 
   const renderReplay = () => (
     <>
+      <p>{JSON.stringify(recordedChunks.type)}</p>
       <video
         src={blobURL}
         autoPlay
@@ -126,8 +127,10 @@ const SubmitChallengeForm = ({
 
   return (
     <div className="videoRecorder">
-      {challenge.vodID && <Redirect to={`/challenge/confirmation/${challenge.id}`}  />}
-      {redirect && <Redirect to={`/challenge/confirmation/${challenge.id}`}  />}
+      {challenge?.vodID && (
+        <Redirect to={`/challenge/confirmation/${challenge.id}`} />
+      )}
+      {redirect && <Redirect to={`/challenge/confirmation/${challenge.id}`} />}
       {blobURL ? renderReplay() : renderCaputre()}
     </div>
   );

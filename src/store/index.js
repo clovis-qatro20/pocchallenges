@@ -19,7 +19,7 @@ const store = createStore(
   reducer,
   compose(
     applyMiddleware(sagaMiddleware),
-    devTools
+    // devTools
   )
 );
 
