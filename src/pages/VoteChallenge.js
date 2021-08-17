@@ -129,7 +129,7 @@ const VoteChallenge = ({
 
   useEffect(() => {
     setPickWinner(
-      moment(challenge?.expires).isBefore(moment().format("YYYY-MM-DD"))
+      moment(challenge?.expires).isBefore(moment().format("YYYY-MM-DDThh:mm"))
     );
     setVideoOnDemandJsOptions({
       autoplay: false,
@@ -163,7 +163,7 @@ const VoteChallenge = ({
           <h5>Gracias por Vortar!!</h5>
           <p>
             Recuerda volver a este mismo link el{" "}
-            {moment(challenge?.expires).format("LL")}, para descubir al ganador
+            {moment(challenge?.expires).calendar()}, para descubir al ganador
           </p>
         </>
       ) : (
@@ -212,7 +212,7 @@ const VoteChallenge = ({
         ) : (
           <>
             <p>la votacion termina a las</p>
-            <p>{moment(challenge?.expires).format("LL")}</p>
+            <p>{moment(challenge?.expires).calendar()}</p>
             <p>¿CUMPLIÓ? O NO CUMPLIÓ</p>
             <button className="secondary" onClick={() => closeModal()}>
               votar
@@ -234,8 +234,8 @@ const VoteChallenge = ({
           }`}</p>
           <p>a</p>
           <p>{challenge?.description}</p>
-          <p>antes del</p>
-          <p>{challenge?.expires}</p>
+          {/* <p>antes del</p>
+          <p>{challenge?.expires}</p> */}
           {renderVotingSection()}
           <p></p>
         </div>

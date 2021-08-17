@@ -112,7 +112,7 @@ const SubmitChallenge = ({
             ganas y gana el reto
           </p>
           <p>Ingresa antes del</p>
-          <p>{moment(challenge?.expires).format("LL")}</p>
+          <p>{moment(challenge?.expires).calendar()}</p>
         </div>
         {challengeCode === Number(code)
           ? renderChallengerMessage()

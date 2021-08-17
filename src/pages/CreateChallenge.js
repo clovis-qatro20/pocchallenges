@@ -54,7 +54,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
       throw new Error("ingresa un correo valido");
     }
 
-    if (!date || moment(date).isBefore(moment().format("YYYY-MM-DD")))
+    if (!date || moment(date).isBefore(moment().format("YYYY-MM-DDThh:mm")))
       throw new Error("ingresa una fecha valida");
   };
 
@@ -137,12 +137,12 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
         <div className="inputRow">
           <label>Fecha de finalización</label>
           <input
-            type="date"
+            type="datetime-local"
             id="start"
             name="trip-start"
             value={date}
-            min={moment().format("YYYY-MM-DD")}
-            max={moment().add(2, "w").format("YYYY-MM-DD")}
+            min={moment().format("YYYY-MM-DDThh:mm")}
+            max={moment().add(2, "w").format("YYYY-MM-DDThh:mm")}
             onChange={(e) => setDate(e.target.value)}
           ></input>
         </div>
