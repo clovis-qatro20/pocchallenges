@@ -32,7 +32,6 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
   useEffect(() => {
     const randomCode = Math.floor(Math.random() * 10000);
     setCode(randomCode);
-    generateRandomChallenge();
   }, []);
 
   const validateInput = () => {
@@ -90,7 +89,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
       <img src={`${process.env.PUBLIC_URL}/logo.png`} className="logo" />
       <div className="formContainer">
         <div className="inputRow">
-          <label>Descripcion del reto</label>
+          <label>Descripción del reto</label>
           <textarea
             rows="8"
             type="text"
@@ -100,7 +99,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
         </div>
         <div className="challengeDescriptionActions">
           <StyledButton
-            title="Crear reto"
+            title="Limpiar"
             action={() => setDescription("")}
             customClass="generateChallenge"
           />
@@ -147,7 +146,7 @@ const CreateChallenge = ({ createChallenge, challenge }) => {
           ></input>
         </div>
         <div className="inputRow">
-          <label>Descripcion del Premio</label>
+          <label>Descripción del Premio</label>
           <textarea
             rows="6"
             type="text"
