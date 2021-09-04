@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import ErrorBoundary from "./ErrorBoundaries";
 import Popup from "./Popup";
 
 export const LayoutContext = React.createContext({ padding: "1em" });
