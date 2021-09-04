@@ -9,6 +9,7 @@ import CreateChallenge from "./pages/CreateChallenge";
 import ChallengeConfirmation from "./pages/ChalllengeConfirmation";
 import SubmitChallenge from "./pages/SubmitChallenge";
 import SubmitChallengeForm from "./pages/SubmitChallengeForm";
+import ListChallenges from "./pages/ListChallenges";
 import store from "./store";
 import VoteChallenge from "./pages/VoteChallenge";
 import ReactGA from "react-ga";
@@ -44,6 +45,10 @@ const App = () => {
             <Route
               path="/challenge/:id/:code"
               component={withTracker(SubmitChallenge)}
+            />
+            <Route
+              path="/challenges/list"
+              component={withTracker(ListChallenges)}
             />
             <Route path="/" component={Home} />
           </Switch>

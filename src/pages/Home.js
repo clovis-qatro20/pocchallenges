@@ -8,6 +8,10 @@ const Home = ({ history, resetChallenge }) => {
     history.push("/create_challenge");
   };
 
+  const challengeList = () => {
+    history.push("/challenges/list");
+  };
+
   resetChallenge();
 
   return (
@@ -33,6 +37,7 @@ const Home = ({ history, resetChallenge }) => {
         </ol>
       </div>
       <StyledButton title="empecemos" action={initChallenge} />
+      <StyledButton title="ver otros retos" action={challengeList} />
     </>
   );
 };

@@ -13,6 +13,7 @@ import API from "@aws-amplify/api";
 import { onUpdateChallengeSubscription } from "../graphql/subscriptions";
 import "moment/locale/es";
 import { useParams } from "react-router";
+import awsvideoconfig from "../aws-video-exports";
 
 class VideoPlayer extends React.Component {
   componentDidMount() {
@@ -137,7 +138,7 @@ const VoteChallenge = ({
       aspectRatio: "4:5",
       sources: [
         {
-          src: `https://cmuvod-dev-output-m1m9gw90.s3.amazonaws.com/public/${challenge?.vodAsset?.videoID}/${challenge?.vodAsset?.videoID}.m3u8`,
+          src: `https://${awsvideoconfig.awsOutputVideo}/public/${challenge?.vodAsset?.videoID}/${challenge?.vodAsset?.videoID}.m3u8`,
         },
       ],
     });

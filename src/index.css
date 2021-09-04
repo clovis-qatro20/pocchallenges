@@ -329,3 +329,59 @@ code {
   text-align: center;
   margin-top: 2em;
 }
+
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #00000082;
+}
+
+.modalContainer {
+  width: 90%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  background: #232323;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 2em;
+  box-shadow: 5px 5px 10px #000;
+}
+
+.modalContainer span {
+  color: white;
+  align-self: flex-end;
+  margin-right: 1em;
+}
+
+.modalContainer a button {
+  width: 100%;
+}
+
+.challengeListItem {
+  display: flex;
+  background-color: #404040;
+  align-items: center;
+  padding: 1em;
+  border-bottom: 1px solid;
+  width: 20em;
+}
+
+.challengeListItem p {
+  font-size: 1em;
+  margin-right: 1em;
+}
+
+.challengeListItem button {
+  font-size: 1em;
+  border-radius: 1em;
+  min-width: 8em;
+  height: 3em;
+  padding: 0.2em;
+}

@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { connect } from "react-redux";
 import { Redirect, useParams } from "react-router";
 import { toast } from "react-toastify";
+import { LayoutContext } from "../components/Layout";
 import StyledButton from "../components/StyleButton";
 import { getChallenge } from "../store/challenge/actions";
 
@@ -12,12 +13,17 @@ const ChallengeConfirmation = ({
   const challengerURL = `${process.env.REACT_APP_BASE_URL}/challenge/${data?.id}`;
   const votingURL = `${process.env.REACT_APP_BASE_URL}/challenge/vote/${data?.id}`;
   const urlWithCode = `${challengerURL}/${data?.code}`;
+  const { createPopup } = useContext(LayoutContext);
   const inputRefChallengeURL = useRef(null);
   const inputRefVotingURL = useRef(null);
   const { id } = useParams();
 
   useEffect(() => {
-    !data  && getChallenge(id);
+    !data && getChallenge(id);
+    createPopup({
+      text: "Ayudanos a mejorar, nos encantaría conocer tu feedback sobre esta idea para que un día podamos llevar este proyecto a la relidad",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSeIR2t6qv5fBe5tpRi0-cx6KQdax4_Po7BuGusl7SWeOGG34g/viewform?usp=sf_link",
+    });
   }, []);
 
   const copyURL = () => {
