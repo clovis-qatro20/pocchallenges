@@ -36,7 +36,7 @@ const SubmitChallengeForm = ({
   useEffect(() => {
     setStyle({ padding: 0, background_color: "#ffffff" });
     (async () => {
-      await Auth.signIn("masteruser", "ShibaInuCoin");
+      await Auth.signIn(process.env.REACT_APP_AUTH_USER, process.env.REACT_APP_AUTH_PASS);
     })();
 
     getChallenge(id);
